@@ -12,18 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _changeLanguage(Language language) {
-    Locale _temp;
-    switch (language.languageCode) {
-      case 'en':
-        _temp = Locale(language.languageCode, 'US');
-        break;
-      case 'ar':
-        _temp = Locale(language.languageCode, 'SA');
-        break;
-      default:
-        _temp = Locale(language.languageCode, 'SA');
-    }
+  void _changeLanguage(Language language) async {
+    Locale _temp = await setLocale(language.languageCode);
+
     MyApp.setLoocale(context, _temp);
   }
 
@@ -35,7 +26,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton(
-              underline: SizedBox(),
+              underline: const SizedBox(),
               icon: const Icon(Icons.language),
               onChanged: (Language? language) {
                 _changeLanguage(language!);

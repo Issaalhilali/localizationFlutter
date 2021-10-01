@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tatutiallocalization/localiation/demo_localization.dart';
+import 'package:tatutiallocalization/localiation/language_constants.dart';
 import 'package:tatutiallocalization/routes/custome_route.dart';
 import 'package:tatutiallocalization/routes/route_name.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -25,6 +26,16 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _locale = locale;
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    getLocale().then((locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
+    super.didChangeDependencies();
   }
 
   Locale? _locale;
